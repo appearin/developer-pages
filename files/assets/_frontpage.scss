@@ -1,0 +1,434 @@
+#news {
+  &.ios {
+    background: #fff; //fallback
+    background: url(/images/frontpage/iOS.jpg) no-repeat center center fixed;
+    background-size: cover;
+    background-position-y: 0;
+  }
+}
+
+.reverse-colors {
+  background: #f4f4f4;
+  color: #323338;
+  &.outline {
+    text-shadow: 0 1px 4px rgba(255, 255, 255, .6);
+  }
+
+  .title.decorated::after {
+    background: #000 !important;
+  }
+}
+
+.frontpage {
+  font-size: 17px;
+
+  .fat-header {
+    @include cover-background-striped('/images/bg/background_polar_1.jpg');
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    cursor: default;
+  }
+
+  h2 {
+    margin-bottom: 5px;
+    margin-top: 35px;
+  }
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
+
+  div.endorsements {
+    white-space: nowrap;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    transition: transform .5s;
+    margin: auto;
+
+    article.endorsement {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  .centered {
+    text-align: center;
+
+    h1.title {
+      margin: 30px 0 40px 0;
+      position: relative;
+
+      &.decorated::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 28px;
+        background: #fff;
+        left: calc(50% - 15px);
+        bottom: -10px;
+      }
+    }
+  }
+
+  .low-profile .centered .h1.title {
+    margin-bottom: 60px;
+  }
+
+  .testimonial {
+    background: #27282c;
+    height: 449px;
+
+    .profile-image {
+      img.profile {
+        border-radius: 50%;
+        box-shadow: 2px 2px 11px #000;
+        margin: 25px auto 5px auto;
+      }
+    }
+
+    .content {
+      max-width: 620px;
+    }
+    p.body {
+      font-size: 2.117647059em;
+      font-style: italic;
+      font-family: $decorative-font;
+      margin: 0;
+    }
+
+    .attribution {
+      font-size: 14px;
+      position: relative;
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  .howto {
+    counter-reset: step;
+    background: #27282c;
+    .steps {
+      display: inline-block; // fallback
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      flex-direction: row;
+      webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+
+      .step {
+        counter-increment: step;
+        text-align: center;
+        align-items: stretch;
+        min-width: 220px;
+
+        &:first-of-type,
+        &:last-of-type {
+          max-width: 220px;
+        }
+
+        .body {
+          width: 220px;
+          margin: auto;
+
+          p {
+            margin-bottom: 0;
+            font-size: 15px;
+          }
+        }
+
+        figure.illustration {
+          margin: 2em auto;
+          height: 220px;
+          width: 220px;
+          border-radius: 50%;
+          border: 6px solid #2b2c30;
+          box-shadow: 0 0 10px #000;
+          overflow: hidden;
+
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+
+        h1 {
+          font-size: 1.294117647em;
+          &::before {
+            content: counter(step)'. ';
+          }
+        }
+      }
+    }
+  }
+
+  .url-wrapper {
+    height: 27em;
+    padding-top: 8em;
+    text-align: center;
+
+    .subtitle {
+      color: #fff;
+      font-size: 2.3em;
+      position: relative;
+      margin: 0 0 .45em 0;
+    }
+
+    .pitch {
+      font-size: 1em;
+      margin-top: 20px;
+      font-family: $body-font;
+    }
+  }
+
+  .low-profile .url-wrapper {
+    height: 24em;
+  }
+
+  h1.title {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .advantage {
+    padding: 104px 0;
+
+    .illustration {
+      margin: 0;
+      position: absolute;
+      height: 260px;
+      top: calc(50% - 130px);
+
+      &.functional {
+        width: 260px;
+        right: 0;
+      }
+
+      &.bleeding {
+        width: 520px;
+        right: -80px;
+      }
+
+      img {
+        max-height: 100%;
+        max-width: 100%;
+      }
+    }
+
+    &:nth-of-type(even) {
+      .illustration {
+        &.functional {
+          right: auto;
+          left: 0;
+        }
+        &.bleeding {
+          right: auto;
+          left: -180px;
+        }
+      }
+      .content {
+        .body {
+          margin-left: auto;
+        }
+      }
+      .direction::before {
+        content: 'to the left';
+      }
+    }
+
+    &:nth-of-type(odd) {
+      .direction::before {
+        content: 'to the right';
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    .body {
+      max-width: 520px;
+    }
+  }
+
+  #no-logins-or-downloads {
+    .body {
+      margin-top: 100px;
+    }
+  }
+
+  #easy-to-invite-anyone {
+    @include cover-background-striped('/images/bg/fjord.jpg');
+    text-shadow: 0 0 2px #000;
+  }
+
+  #testimonial {
+    @include cover-background-striped('/images/bg/mountains.jpg');
+    text-shadow: 0 0 2px #000;
+  }
+}
+
+.frontpage .advantage .illustration.browser-icons {
+  height: 100%;
+  top: 0;
+  left: auto;
+  display: flex;
+
+  ul.icon-container {
+    margin: auto 0;
+    display: flex;
+  }
+
+  ul.icon-container,
+  li.browser-icon {
+    padding: 0;
+  }
+
+  li.browser-icon {
+    display: block;
+    margin: 0;
+    width: 80px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+
+    -webkit-transform: scale(.9);
+    -moz-transform: scale(.9);
+    transform: scale(.9);
+
+      &:hover {
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+
+    .browser-logo {
+      height: 80px;
+      width: 80px;
+      display: flex;
+      margin: 0 auto 1em auto;
+
+      img {
+        border: none;
+        margin: auto;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    p.desc {
+      font-size: .8em;
+      margin: 0;
+      cursor: pointer;
+    }
+
+    small {
+      font-size: 8px;
+      font-style: italic;
+    }
+
+    &.chrome img {
+      height: 64px;
+    }
+    &.firefox {
+      img {
+        height: 70px;
+      }
+    }
+  }
+
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+}
+
+
+//---------------
+// Media queries
+//---------------
+@media screen and (min-width: 940px) {
+  .frontpage {
+    .description-section {
+      .how-to-section {
+        margin-right: 10px;
+        min-width: 210px;
+        width: 210px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $media-collapse-width) and (max-width: 940px) {
+  .frontpage {
+    .description-section {
+      .how-to-section {
+        margin-right: 50px;
+        min-width: 250px;
+        width: 40%;
+      }
+    }
+  }
+}
+
+// General large screen styling
+@media screen and (min-width: $media-collapse-width) {
+  .frontpage {
+    .left-column {
+      margin-right: 10%;
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .frontpage {
+    .howto .steps {
+      display: block;
+      .step {
+        margin: auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .frontpage .advantage .illustration.browser-icons {
+    position: static;
+    margin: 3em auto 0 auto;
+    height: auto;
+  }
+
+  .advantage .direction::before {
+    content: 'below' !important;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  body {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 560px) {
+  .frontpage {
+    .content-wrapper.advantage:nth-of-type(even) {
+      .content {
+        .body {
+          left: 0;
+        }
+      }
+    }
+  }
+}

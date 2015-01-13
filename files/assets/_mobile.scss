@@ -1,0 +1,328 @@
+$mobile-breakpoint: 640px;
+$mobile-toolbar-button-size: 50px;
+
+.virtual-keyboard {
+  .mobile-toolbar {
+    display: none !important;
+  }
+
+  .modal {
+    max-height: none !important;
+  }
+}
+
+.mobile-toolbar-wrapper {
+  display: none;
+
+  .clicklay,
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .overlay {
+    pointer-events: none;
+    z-index: 3;
+  }
+  .clicklay {
+    z-index: 2;
+  }
+
+  &.visible {
+    cursor: default;
+
+    .overlay {
+      background: rgba(0, 0, 0, .4);
+    }
+    .clicklay {
+      z-index: 3;
+    }
+    .mobile-toolbar {
+      opacity: 1;
+      bottom: 0;
+      transform: scale(1);
+      z-index: 4;
+      transition-delay: 0, 0, 0, 0;
+    }
+
+    .exit-room-button,
+    .mobile-statusbar {
+      display: block;
+    }
+  }
+  .exit-room-button {
+    position: absolute;
+    top: 1em;
+    left: 1em;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, .6);
+    cursor: pointer;
+    z-index: 4;
+    display: none;
+    transform: rotate(180deg);
+    display: none;
+
+    .svg-icon {
+      width: 13px;
+      height: 100%;
+      margin: auto;
+
+      .stroke {
+        stroke: #fff;
+      }
+    }
+
+  }
+
+}
+
+.mobile-statusbar {
+  font-size: .8em;
+  display: none;
+  background: $secondary-color;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 1.5em;
+  z-index: 4;
+  text-align: center;
+}
+
+.mobile-toolbar {
+  $on-color: $pink-color;
+  $off-color: $white-color;
+
+  position: fixed;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: .5em;
+  opacity: 0;
+  display: flex;
+  transform: scale(1.05);
+  transition: transform $easing-function .4s,
+              bottom $easing-function .4s,
+              opacity $easing-function .3s, // this because it looked like it stopped abruptly
+              z-index 0; // this funks with the animation
+
+  transition-delay: 0, 0, 0, .4s;
+  z-index: -1;
+
+  input[type=checkbox] {
+    display: none;
+    &:checked +.button {
+      background: $on-color;
+      color: $white-color;
+
+      .fill {
+        fill: $off-color;
+      }
+
+      .on {
+        display: none;
+      }
+
+      .off {
+        display: block;
+      }
+
+      &.lock::before {
+        content: "\f023";
+      }
+    }
+  }
+
+  .button {
+    // todo: check color:
+
+    font-size: $mobile-toolbar-button-size / 2;
+    display: inline-block;
+    background: #fff;
+    border-radius: 50%;
+    vertical-align: top;
+    text-align: center;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    cursor: pointer;
+    color: $primary-color;
+    display: flex;
+
+    .svg-button {
+      height: 100%;
+      width: 100%;
+
+      svg {
+        height: 100%;
+      }
+    }
+
+    .fill {
+      fill: $on-color;
+    }
+
+    &::before,
+    img {
+      margin: auto;
+    }
+
+    .off {
+      display: none;
+    }
+
+    &.active,
+    &.loading {
+      background: $on-color;
+      color: $white-color;
+
+      .fill {
+        fill: $off-color;
+      }
+
+      .on {
+        display: none;
+      }
+
+      .off {
+        display: block;
+      }
+
+      &.lock::before {
+        content: "\f023";
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile-breakpoint) {
+  .frontpage .content-wrapper,
+  .static-page .content-wrapper {
+    font-size: .8em;
+  }
+
+  .mobile-web {
+    // hide everything not needed/not yet designed for mobile
+    .invite-by-sms,
+    .bottom-left-button-group,
+    .bottom-right-button-group,
+    .arrow-wrapper,
+    .chat-wrapper,
+    .video-space-header {
+      display: none;
+    }
+
+    .mobile-toolbar-wrapper {
+      display: block;
+    }
+
+    main.video-space {
+      padding-bottom: 10px;
+      padding-top: 10px;
+    }
+
+    .room-wrapper.in-room .modal {
+      $padding-bottom: $mobile-toolbar-button-size + 20px;
+      top: 0;
+      max-height: calc(100% - #{$padding-bottom});
+
+      .backdrop {
+        display: none;
+      }
+
+      .modal-inner {
+        width: 100% !important;
+        left: 0 !important;
+        height: 100%;
+        max-height: none !important;
+      }
+    }
+
+    .video-box {
+      .toolbar,
+      .top-right-corner {
+        display: none;
+      }
+    }
+
+    .non-essential {
+      display: none !important;
+    }
+
+    .modal {
+      .column {
+        margin: 0 !important;
+      }
+
+      .content {
+        height: auto !important;
+      }
+      .code {
+        display: inline-block;
+        width: calc(100% - 110px);
+        margin-right: 15px;
+      }
+      header {
+        img {
+          display: none !important;
+        }
+        margin-bottom: .5em !important;
+        &::after {
+          margin-top: 5px;
+        }
+      }
+      h1.title {
+        font-size: 28px !important;
+        margin-bottom: 5px;
+      }
+      .room-name {
+        margin-top: 0;
+      }
+      .back-button {
+        z-index: 99 !important;
+      }
+    }
+  }
+}
+
+.mobile-waiting-text {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 3;
+  pointer-events: none;
+  padding: 0 2em;
+
+  .content {
+    text-align: center;
+    padding: 2em 4em;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    border-radius: 3px;
+    margin: auto;
+    width: 100%;
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .button {
+      pointer-events: auto;
+      margin-top: 1em;
+    }
+  }
+}

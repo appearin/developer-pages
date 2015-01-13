@@ -1,0 +1,266 @@
+.top-bar.screen-element {
+  position: relative;
+  z-index: $layer-topbar;
+}
+
+.video-space-header {
+  $text-color: #ffffff;
+
+  color: $text-color;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: height .5s;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $topbar-height;
+
+  &, input, button, textarea {
+    font-family: $tertiary-font;
+    font-weight: 300;
+    font-size: 14px;
+  }
+
+  > .content-wrapper {
+    position: absolute;
+    width: 100%;
+    height: $topbar-height;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    padding-left: 12px;
+
+    .copy-button-wrapper {
+      min-width: 90px;
+      margin: auto;
+    }
+
+    .styled-checkbox {
+      height: 100%;
+      max-width: 120px;
+    }
+
+    > .right-aligned-button-group {
+      display:flex;
+      justify-content: flex-end;
+      flex-grow:1;
+    }
+
+    > * {
+      margin: auto;
+      height: 100%;
+    }
+
+    .top-bar-button {
+      padding: 0 15px;
+      line-height: $topbar-height;
+      box-shadow: none;
+      border-left: none;
+      cursor: pointer;
+      text-align: center;
+      min-width: 40px;
+      position: relative;
+
+      &.icon-only {
+        min-width: $topbar-height;
+        width: $topbar-height;
+        height: $topbar-height;
+        line-height: $topbar-height;
+        padding: 0;
+
+        i {
+          font-size: 1.571428571em;
+          line-height: 2.272727273em;
+        }
+      }
+
+      &.room-lock-toggle.is-locked {
+        background: #f74969;
+      }
+
+      &.exit {
+        color: #7d7d7e;
+
+        &:hover {
+          color: $text-color;
+        }
+      }
+
+      > * {
+        display: inline-flex;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .icon {
+        color: inherit;
+        height: 1em;
+
+        &, svg {
+          max-width: 1.5em;
+        }
+        svg {
+          width: 1.5em;
+        }
+
+        .fill {
+          fill: $text-color;
+        }
+
+        svg {
+          pointer-events: none;
+        }
+
+        &.contacts {
+          position: relative;
+          top: .285714286em;
+
+          &, svg {
+            width: 1.285714286em;
+          }
+        }
+
+        &.login {
+          position: relative;
+          top: .571428571em;
+
+          &, svg {
+            width: $topbar-height - .571428571em * 2;
+          }
+        }
+      }
+
+      .desc {
+        margin-left: 8px;
+      }
+
+      &.active {
+        p.desc {
+          line-height: 3.714285714em;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, .24);
+      }
+
+      &.active {
+        background-color: $white-background-color;
+        color: black;
+
+        .icon .fill {
+          fill: black;
+        }
+      }
+
+      &:hover.active {
+        background-color: rgba(255, 255, 255, .80);
+      }
+    }
+  }
+}
+
+.room-url-wrapper {
+  display: flex;
+  .room-url {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 0 0 1em;
+    font-weight: 400;
+    resize: none;
+    transition: background .7s;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: $topbar-height / 1.1; // SCSS calculation, as Firefox don't do calc() on line-height
+    width: 350px;
+    text-decoration: underline;
+
+    &.flash {
+      background: $secondary-color;
+      transition: background .1s;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  .copy-link-text-button {
+    margin: auto .5em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .room-copy-description {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .room-description,
+  .copy-description {
+    display: none;
+  }
+
+  .video-space-header {
+    .top-bar-button .desc,
+    .copy-button-wrapper {
+      display: none !important;
+    }
+  }
+}
+
+
+@media (max-width: 860px) {
+  .admin-panel .body {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 780px) {
+  .video-space-header > {
+    .content-wrapper {
+      .copy-button-wrapper {
+        margin-right: 5px;
+        min-width: 35px;
+      }
+
+      .desc {
+        display: none !important;
+      }
+      .copy-link-text-button {
+        min-width: 0 !important;
+
+        .icon {
+          margin-right: 0 !important;
+        }
+      }
+
+      .room-url {
+        max-width: 350px;
+        flex-grow: 1;
+      }
+    }
+
+  }
+
+  .user-module {
+    height: 40px;
+    width: 40px;
+    padding: 0;
+
+    .user-object .profile-pic {
+      height: 30px !important;
+      width: 30px !important;
+      margin: auto;
+    }
+  }
+}

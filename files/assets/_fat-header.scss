@@ -1,0 +1,364 @@
+.fat-header {
+  font-size: 17px;
+  height: 502px;
+  color: #fff;
+  overflow: hidden;
+
+  div.custom-background {
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity, transform;
+    -webkit-transition: opacity, transform, -webkit-filter;
+    transform: scale(1.05);
+    -webkit-filter: saturate(20%);
+    transition-duration: 1s, 0.75s, 0.25s;
+
+    &.active {
+      opacity: 1;
+      transform: scale(1.0);
+      -webkit-filter: saturate(100%);
+      transition-duration: 0.5s, 0.75s, 1s;
+    }
+  }
+
+  .content {
+    position: relative;
+  }
+
+  .return-link {
+    display: block;
+    color: white;
+    text-decoration: none !important;
+
+    &,
+    > * {
+      cursor: pointer;
+    }
+    &:hover {
+      color: white;
+    }
+  }
+
+  div.url-bar {
+    $animation-length: 1s;
+    width: 100%;
+    background: rgba(0,0,0,0);
+    transition: background 0;
+
+    figure.logo {
+      position: absolute;
+      height: 60px;
+      width: 60px;
+      margin: 0;
+      left: calc((100% - 890px)/2);
+      opacity: 0;
+      transition: opacity 0;
+    }
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99;
+      padding: 5px 0;
+      transition: background $animation-length;
+      background: rgba(0,0,0,.9);
+
+      figure.logo {
+        transition: opacity $animation-length;
+        opacity: 1;
+        top: 0;
+      }
+
+      & +.pitch {
+        margin-top: 89px;
+      }
+    }
+  }
+
+  div.form-wrapper {
+    display: inline-block;
+    margin: 0 auto;
+    max-width: 100%;
+
+    .logo {
+      height: 52px;
+      position: absolute;
+      top: -52px;
+      left: -82px;
+      z-index: 99;
+      width: 52px;
+      margin: 0;
+      display: none;
+    }
+
+    form.room-creation {
+      $refresh-button-size: 40px;
+      cursor: text;
+      background: #fff;
+      border-radius: 3px;
+      padding: .294117647em .294117647em .294117647em 1.176470588em;
+      box-shadow: 0 0 8px #444;
+      display: -webkit-flex;
+      display: flex;
+
+      p.prething {
+        color: #9b9b9b;
+        font-weight: 200;
+        margin: auto;
+        cursor: text;
+        margin-right: .5em;
+        min-width: 75px;
+      }
+
+      .pink-button {
+        margin: 0;
+        border-radius: 3px;
+        font-size: .882352941em;
+      }
+
+      #room-namer {
+        background: transparent;
+        border: none;
+        margin: 0;
+        -webkit-flex-grow: 2;
+        flex-grow: 2;
+        min-width: 307px;
+        padding-right: $refresh-button-size;
+        height: 40px; // thanks to Tor Arvid for spotting this
+
+        @include placeholder {
+          color: $primary-color;
+          font-weight: 400;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      a.refresh-button {
+        color: rgb(175, 175, 175);
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.5em;
+        margin-left: -$refresh-button-size;
+        text-decoration: none;
+        width: $refresh-button-size;
+        height: $refresh-button-size;
+
+        i {
+          display: inline-block;
+          font-size: inherit;
+          -moz-transition: all linear 999s;
+          -ms-transition: all linear 999s;
+          -o-transition: all linear 999s;
+          -webkit-transition: all linear 999s;
+          transition: all linear 999s;
+          vertical-align: middle;
+          width: $refresh-button-size;
+          height: $refresh-button-size;
+
+          &::before {
+            line-height: $refresh-button-size;
+            font-size: 17px;
+          }
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+  nav.sitenav {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    ul {
+      display: -webkit-flex;
+      display: flex;
+    }
+    li {
+      display: block;
+    }
+    a.link {
+      font-size: .8em;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+      padding: .2em 1em;
+      color: #fff;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+
+  .url-wrapper {
+    height: 27em;
+    padding-top: 186px;
+    text-align: center;
+
+    .subtitle {
+      color: #fff;
+      font-size: 2.3em;
+      position: relative;
+      margin: 0 0 .45em 0;
+      line-height: .692307692em; // for some reason, this seems to be the correct line-height
+    }
+
+    .pitch {
+      font-size: 1em;
+      margin-top: 20px;
+      font-family: $body-font;
+    }
+  }
+
+  .low-profile .url-wrapper {
+    height: 24em;
+  }
+
+
+
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 5px;
+  left: 0;
+
+  h1.main-title,
+  figure.main-logo {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  h1.main-title {
+    font-size: 24px;
+    margin: 0;
+    line-height: 45px;
+    font-family: $decorative-font;
+  }
+
+  figure.main-logo {
+    height: 55px;
+    margin: 0 2px 0 0;
+    position: relative;
+    width: 55px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 890px) {
+  .fat-header {
+    div.url-bar.fixed figure.logo {
+      left: 0;
+    }
+  }
+}
+
+
+@media screen and (max-width: 660px) {
+  .fat-header {
+    div.url-bar.fixed {
+      #room-namer {
+        padding-right: 3px;
+      }
+
+      figure.logo {
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 560px) {
+  .fat-header {
+    nav.sitenav ul {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      a.link {
+        text-align: right;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .fat-header {
+    div.form-wrapper form.room-creation p.prething {
+      text-align: left;
+      min-width: 57px;
+    }
+
+    div.url-bar {
+      font-size: 13px;
+
+      &.fixed {
+        padding: 0;
+        background: transparent;
+
+        + .pitch {
+          margin-top: 79px;
+        }
+      }
+    }
+
+    div.form-wrapper {
+      width: 100%;
+
+      form.room-creation {
+
+        #room-namer {
+          min-width: 0;
+        }
+        .refresh-button {
+          display: none;
+        }
+      }
+
+    }
+    .fixed div.form-wrapper form.room-creation {
+      border-radius: 0;
+    }
+
+    .description-section {
+      .how-to-section {
+        margin: 20px 0;
+        width: auto;
+
+        span {
+          display: block;
+          margin: 10px 0;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+

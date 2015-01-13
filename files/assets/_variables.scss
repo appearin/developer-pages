@@ -1,0 +1,74 @@
+// Responsiveness
+$media-collapse-width: 630px;
+
+// Colors
+$pink-color: #FF2E63;
+$pink-color-shade: #EB2D5C;
+$green-color: #00fa53;
+$black-color: #000000;
+$dark-grey-color: #333333;
+$light-grey-color: #999999;
+$white-color: #ffffff;
+$white-background-color: #FAFAFA;
+$danger-color: #E61E1E;
+
+$success-color: $green-color;
+
+// Easing
+$easing-function: cubic-bezier(0.19, 1, 0.22, 1);
+
+// Text color
+$pink-text-color: #FF2E63;
+$green-text-color: #00e04b;
+$black-text-color: rgba(0, 0, 0, .87);
+$grey-text-color: rgba(0, 0, 0, .6);
+$black-secondary-text-color: rgba(0, 0, 0, .54);
+$black-disabled-text-color: rgba(0, 0, 0, .26);
+$black-hint-color: rgba(0, 0, 0, .4);
+$white-text-color: white;
+
+$grey-disabled-text-color: #989898;
+$green-ui-color: #1ce662;
+$error-background-color: #FEE4E4;
+
+// Fonts
+$decorative-font: "futura-pt", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$tertiary-font: OpenSans, 'helvetica neue', sans-serif;
+
+// Meta (programmer vs designer)
+$primary-color: $pink-color;
+$primary-color-shade: $pink-color-shade;
+$primary-text-color: $pink-text-color;
+$profile-font: $decorative-font;
+$secondary-color: #85ae9b;
+$secondary-font: $tertiary-font;
+$shadow: #6f8b7c;
+$logo-primary-color: #f74969;
+$logo-secondary-color: #85ae9b;
+
+$code-font: monospace;
+
+// Possibly, this will be transitioned towards opensans.
+$body-font: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$body-font-size: 14px;
+
+$placeholder-font-family: $decorative-font;
+$placeholder-text-color: hsl(0, 0%, 67.5%);
+
+// Top bar
+$topbar-height: 3.571428571em; // approximately 50px
+
+$collapsed-topbar-scaling-factor: .8;
+$collapsed-topbar-height: $topbar-height * $collapsed-topbar-scaling-factor;
+$collapsed-topbar-font-size: #{$collapsed-topbar-scaling-factor}em;
+
+$default-avatar-background-color: #F8F8F8;
+
+$hr-color: hsl(0, 0, 88%);
+$loadbar-color: #25e663;
+
+// Top level z-index
+$layer-topbar: 1000;
+$layer-modal: 900;
+
+$minimalist-border-color: #979797;

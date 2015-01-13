@@ -155,8 +155,9 @@ section.body-wrapper {
         font-size: 4.111111em;
       }
       h2 {
-        font-size: 2em; // 75px
+        font-size: 2em;
         line-height: 1em;
+        margin-top: 1em;
       }
     }
 
@@ -189,14 +190,8 @@ section.body-wrapper {
 //----------------------
 .developer-page {
     .fat-header {
-        .background-overlay {
-            background: url(/assets/background_overlay.png) repeat;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 5;
-            top: 0;
-        }
+        background: url(/images/bg/background_overlay.png),url('/assets/bg.jpg') no-repeat;
+        background-size: auto,cover;
 
         .content {
             z-index: 10;
@@ -232,7 +227,18 @@ section.body-wrapper {
   .content {
       h3 {
           font-size: 24px;
+          margin: 1.5em 0 0.5em 0;
       }
+  }
+
+  .embed-code {
+      width: 100%;
+      font-size: 1.0em;
+      height: 2.5em;
+  }
+
+  .embed-code-wrapper {
+      margin-top: 2em;
   }
 }
 

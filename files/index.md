@@ -7,23 +7,25 @@ template: index.html
 <p class="ingress">Ever wanted to have video conferencing in your project, but
 couldn't bother to deal with all the complicated stuff?</p>
 
+<div class="embed-code-wrapper">
+<p><strong>Embed this on your page</strong></p>
+<input id="embed-code" class="embed-code ui-input-text" type="text" value='<iframe src="https://appear.in/your-room-name" width="800" height="640">' readonly>
+</div>
+
 With appear.in, all you need to do is copy and paste this HTML element to your page, and we
-will deliver video chat for free, to up to 8 people at the same time.
+will deliver video chat for free, for up to 8 people at the same time.
 
-```html
-<iframe src="https://appear.in/your-room-name" width="800" height="640">
-```
+## Example
 
-## Demo
-
-Below is a demo of what you can expect to see on your on page. It just works
-right out of the box, just like appear.in!
+Below is an example of what you can expect to see on your own page. It just works,
+just like appear.in!
 
 <div id="demo-room"></div>
 
 ## Advanced usage
-If you want more advanced usage, such as guaranteed empty and random room names,
-or a compatability check for your users, you can use our JavaScript SDK.
+If you are in the market for something a bit more advanced, such as guaranteed
+empty and random room names, or a compatibility check for your users, you can
+use our JavaScript SDK.
 
 Add the following at the bottom of your body tag to start using it.
 
@@ -43,6 +45,9 @@ Then you can start using it with:
 ```javascript
 var AppearIn = require("appearin-sdk");
 ```
+
+*Note that the NPM version requires a pre-compilation step using something like
+[browserify](http://browserify.org/) or [webpack](://webpack.github.io/) to work.*
 
 ## JavaScript SDK documentation
 The following is an overview of the API methods present in the JavaScript SDK.
@@ -90,9 +95,9 @@ appearin.getRandomRoomName(function (roomName) {
 ```
 
 ### appearin.addRoomToIframe(iframe, roomName)
-We also provide a convenience function to attach a room to an IFrame DOM
+We also provide a convenience function to attach a room to an iframe DOM
 Element. `addRoomToIframe` takes two arguments:
-1. `iframe`, which must be an IFrame DOM Element
+1. `iframe`, which must be an iframe DOM Element
 2. `roomName`, which must be a valid roomName
 
 ```javascript
@@ -103,9 +108,9 @@ appearin.addRoomToIframe(iframe, roomName);
 
 ### appearin.addRoomToElementById(elementId, roomName)
 Similar to addRoomToIframe, we provide a convenience function to add the room to
-an IFrame DOM Element through the use of the id, similar to how `getElementById`
+an iframe DOM Element through the use of the id, similar to how `getElementById`
 works. `addRoomToElementById` takes two arguments:
-1. `elementId`, which must be a unique ID to an IFrame DOM Element
+1. `elementId`, which must be a unique ID to an iframe DOM Element
 2. `roomName`, which must be a valid roomName
 
 If the ID doesn't exists, we will simply return.
@@ -116,27 +121,23 @@ appearin.addRoomToElementById("iframe-element-id", roomName);
 ```
 
 ## FAQ
-
 Here are some frequently asked questions about our API offering. We hope you can
 find the answer you are looking for!
 
-#### Does the API cost anything, or are you planning on charging for it?
-
+__Does the API cost anything, or are you planning on charging for it?__  
 As the API stands today, that is, the ability to embed any room into your page,
 is completely free of charge for unlimited usage. We have no plans now or in the
 future to charge for this basic functionality. However, we reserve the right to
 change the offering, or to charge for additional services in the future.
 
-#### Is the API [HIPAA](https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act) compliant?
-
+__Is the API [HIPAA](https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act) compliant?__  
 As it stands currently, appear.in is not fully HIPAA compliant. However, we are
 working with a few vendors to find a way towards HIPAA compliance so that the
 API can be used in telemedicine fields etc. The best way to track progress is to
 follow our [developer mailing list](http://comoyo.us2.list-manage1.com/subscribe?u=5919921b6414f5578ff5b7750&id=71f4283079),
 or send us an email at [api@appear.in](mailto:api@appear.in).
 
-#### Can I remove the "You are about to enter an appear.in video chat" prompt?
-
+__Can I remove the "You are about to enter an appear.in video chat" prompt?__  
 Unfortunately, you cannot remove or skip the prompt. The prompt is there for
 security reasons. This is due to Chrome auto-approving request for media on
 HTTPS sites, which means in short that if the user has approved access to

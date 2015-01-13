@@ -2,8 +2,17 @@
 <head>
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
+    <link rel="shortcut icon" href="https://d1x2efl61akomv.cloudfront.net/images/favicon.png">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
     <link rel="stylesheet" href="/css/main.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="appear.in Developer API">
+    <meta property="og:site_name" content="appear.in Developer API">
+    <meta property="og:image" content="https://appear.in/images/favicon.png">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:url" content="https://developer.appear.in">
 </head>
 <body>
 <div class="wrapper frontpage-content-wrapper">
@@ -39,8 +48,6 @@
                     </ul>
                 </nav>
             </div>
-            <video class="header-video" src="/assets/dev-pages-header-smaller.mp4" loop autoplay></video>
-            <div class="background-overlay"></div>
         </header>
         <div class="content-wrapper">
             <section class="content">
@@ -64,6 +71,12 @@
         appearin.addRoomToIframe(iframe, roomName);
     });
     demoElement.appendChild(iframe);
+
+    var embedCodeElement = document.getElementById("embed-code");
+    embedCodeElement.addEventListener("click", function () {
+        embedCodeElement.select();
+    });
+
 </script>
 </body>
 </html>

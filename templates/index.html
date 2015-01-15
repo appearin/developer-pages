@@ -13,6 +13,8 @@
     <meta property="og:image" content="https://appear.in/images/favicon.png">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="https://developer.appear.in">
+    <script type="text/javascript" src="//use.typekit.net/foj7ell.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
 <div class="wrapper frontpage-content-wrapper">
@@ -52,8 +54,7 @@
         <div class="content-wrapper">
             <section class="content">
                 <header class="content-header">
-                    <h1>Developer API</h1>
-                    <span class="subtitle">version {{ version }} - last released 2015-01-13</span>
+                    <h1 class="title">Embed appear.in on your web page</h1>
                 </header>
                 {{{ contents }}}
             </section>
@@ -71,12 +72,6 @@
         appearin.addRoomToIframe(iframe, roomName);
     });
     demoElement.appendChild(iframe);
-
-    var embedCodeElement = document.getElementById("embed-code");
-    embedCodeElement.addEventListener("click", function () {
-        embedCodeElement.select();
-    });
-
 </script>
 </body>
 </html>

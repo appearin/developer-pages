@@ -152,7 +152,7 @@ section.body-wrapper {
 
     .content {
       h1 {
-        font-size: 4.111111em;
+        font-size: 3.4em;
       }
       h2 {
         font-size: 2em;
@@ -219,7 +219,8 @@ section.body-wrapper {
   }
 
   .content-header {
-      h1 {
+      h1.title {
+          font-size: 3.4em;
           margin-bottom: 0;
       }
   }
@@ -240,5 +241,10 @@ section.body-wrapper {
   .embed-code-wrapper {
       margin-top: 2em;
   }
+
+  .padding-please {
+      margin-top: 1em;
+  }
+
 }
 

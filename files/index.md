@@ -35,19 +35,13 @@ advisors. With appear.in anything is possible!
 
 ## FAQ
 Here are some frequently asked questions about our API offering. We hope you can
-find the answer you are looking for!
+find the answer you are looking for! If for any reason you don't, please feel
+free to contact us at [api@appear.in](mailto:api@appear.in).
 
 __Does it cost anything, or are you planning on charging for it?__  
 Usage of the API, and the service itself, is completely free of charge. Neither
 you, or the users using the service, will be charged anything. We have no plans
 to start charging for the API or the service.
-
-__Is the API [HIPAA](https://en.wikipedia.org/wiki/Health_Insurance_Portability_and_Accountability_Act) compliant?__  
-As it stands currently, appear.in is not fully HIPAA compliant. However, we are
-working with a few vendors to find a way towards HIPAA compliance so that the
-API can be used in telemedicine fields etc. The best way to track progress is to
-follow our [developer mailing list](http://comoyo.us2.list-manage1.com/subscribe?u=5919921b6414f5578ff5b7750&id=71f4283079),
-or send us an email at [api@appear.in](mailto:api@appear.in).
 
 __Can I remove the "You are about to enter an appear.in video chat" prompt?__  
 Unfortunately, you cannot remove or skip the prompt. The prompt is there for
@@ -60,7 +54,7 @@ This means that to protect our users, we must implement a prompt screen to get
 explicit access in these cases, as the embedded iframe can easily be hidden by
 an attacker wanting to spy on visitors on the page.
 
-__Can I make it take up the entire page?__  
+__Can I make the room take up the entire page?__  
 Yes, by using CSS, you can target the `iframe` element using selectors and use
 all your ordinary CSS tricks. This way you can set percentage widths or make it
 fit better into your responsive layout. However, if you desire to take over the

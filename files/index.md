@@ -14,7 +14,7 @@ but couldn't figure out how to set it up easily?</p>
 
 <div class="embed-code-wrapper">
 <p><strong>Embed code</strong></p>
-<input id="embed-code" class="embed-code ui-input-text" type="text" value='<iframe src="https://appear.in/your-room-name" width="800" height="640">'>
+<input id="embed-code" class="embed-code ui-input-text" type="text" value='<iframe src="https://appear.in/your-room-name" width="800" height="640"></iframe>'>
 </div>
 
 If you want to adjust width and height of the room, you can also adjust the

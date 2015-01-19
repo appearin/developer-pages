@@ -61,6 +61,12 @@ fit better into your responsive layout. However, if you desire to take over the
 entire page with your video room, it might be better to just redirect the user
 to our main page.
 
+__The embed code I copied from your email/blog post didn't work?__  
+Unfortunately, due to some automagic which is hard to spot, the quotation marks
+were changed in the email sent out, also including the blog post. This causes
+the `iframe` tag to break. Replacing the quotation marks: `”` with `"` will
+resolve the issue. Using the embed code as written above will work as expected.
+
 <h1 class="padding-please">Developer API - Advanced usage</h1>
 
 If you are in the market for something a bit more advanced, such as guaranteed

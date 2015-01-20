@@ -38,6 +38,10 @@ Here are some frequently asked questions about our API offering. We hope you can
 find the answer you are looking for! If for any reason you don't, please feel
 free to contact us at [api@appear.in](mailto:api@appear.in).
 
+__How many people can join a room?__  
+Currently, you can be up to 8 people in a room. If someone tries to join when
+there is already 8 people, they will be told that the room if full.
+
 __Does it cost anything, or are you planning on charging for it?__  
 Usage of the API, and the service itself, is completely free of charge. Neither
 you, or the users using the service, will be charged anything. We have no plans
@@ -66,6 +70,12 @@ Unfortunately, due to some automagic which is hard to spot, the quotation marks
 were changed in the email sent out, also including the blog post. This causes
 the `iframe` tag to break. Replacing the quotation marks: `”` with `"` will
 resolve the issue. Using the embed code as written above will work as expected.
+
+__Is screen sharing supported?__  
+Unfortunately, screen sharing is not supported in the embedded version. While
+users may still see screen sharing sessions if they are using a supported
+browser, they may not share their screen. This is due to limitations put on
+screen sharing by browser vendors due to security concerns.
 
 <h1 class="padding-please">Developer API - Advanced usage</h1>
 

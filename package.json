@@ -1,6 +1,6 @@
 {
   "name": "developer-pages",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "The developer resources for the appear.in developer API",
   "main": "build.js",
   "scripts": {

@@ -86,7 +86,7 @@ use our JavaScript SDK.
 Add the following at the bottom of your body tag to start using it.
 
 ```html
-<script src="//developer.appear.in/scripts/appearin-sdk.0.0.3.min.js"></script>
+<script src="//developer.appear.in/scripts/appearin-sdk.0.0.4.min.js"></script>
 ```
 
 ### NPM
@@ -177,6 +177,9 @@ appearin.addRoomToElementById("iframe-element-id", roomName);
 
 ## SDK Changelog
 The following is a changelog for the JavaScript SDK.
+
+### 0.0.4
+- Correctly support room names without prepending slash
 
 ### 0.0.3
 - Update package.json with correct git repository link

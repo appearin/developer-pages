@@ -34,48 +34,9 @@ friends, or integrate it into your banking system to allow customers to talk to
 advisors. With appear.in anything is possible!
 
 ## FAQ
-Here are some frequently asked questions about our API offering. We hope you can
-find the answer you are looking for! If for any reason you don't, please feel
-free to contact us at [api@appear.in](mailto:api@appear.in).
-
-__How many people can join a room?__  
-Currently, you can be up to 8 people in a room. If someone tries to join when
-there is already 8 people, they will be told that the room if full.
-
-__Does it cost anything, or are you planning on charging for it?__  
-Usage of the API, and the service itself, is completely free of charge. Neither
-you, or the users using the service, will be charged anything. We have no plans
-to start charging for the API or the service.
-
-__Can I remove the "You are about to enter an appear.in video chat" prompt?__  
-Unfortunately, you cannot remove or skip the prompt. The prompt is there for
-security reasons. This is due to Chrome auto-approving request for media on
-HTTPS sites, which means in short that if the user has approved access to
-audio/video on appear.in once, it will get approved every subsequent time,
-without user interaction. For the browser, it looks like the request for webcam
-access comes from appear.in, even though appear.in is embedded on another page.
-This means that to protect our users, we must implement a prompt screen to get
-explicit access in these cases, as the embedded iframe can easily be hidden by
-an attacker wanting to spy on visitors on the page.
-
-__Can I make the room take up the entire page?__  
-Yes, by using CSS, you can target the `iframe` element using selectors and use
-all your ordinary CSS tricks. This way you can set percentage widths or make it
-fit better into your responsive layout. However, if you desire to take over the
-entire page with your video room, it might be better to just redirect the user
-to our main page.
-
-__The embed code I copied from your email/blog post didn't work?__  
-Unfortunately, due to some automagic which is hard to spot, the quotation marks
-were changed in the email sent out, also including the blog post. This causes
-the `iframe` tag to break. Replacing the quotation marks: `”` with `"` will
-resolve the issue. Using the embed code as written above will work as expected.
-
-__Is screen sharing supported?__  
-Unfortunately, screen sharing is not supported in the embedded version. While
-users may still see screen sharing sessions if they are using a supported
-browser, they may not share their screen. This is due to limitations put on
-screen sharing by browser vendors due to security concerns.
+We have collected some [frequently asked questions about both our product and Developer API](https://appear.in/information/faq).
+We hope you can find the answer you are looking for! If for any reason you
+don't, please feel free to contact us at [api@appear.in](mailto:api@appear.in).
 
 <h1 class="padding-please">Developer API - Advanced usage</h1>
 

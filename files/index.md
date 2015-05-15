@@ -105,7 +105,7 @@ appearin.getRandomRoomName().then(function (roomName) {
 });
 
 // Callback-based workflow
-appearin.getRandomRoomName(function (roomName) {
+appearin.getRandomRoomName(function (err, roomName) {
     // do something with the roomName
 });
 ```

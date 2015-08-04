@@ -64,7 +64,7 @@ var AppearIn = require("appearin-sdk");
 ```
 
 *Note that the NPM version requires a pre-compilation step using something like
-[browserify](http://browserify.org/) or [webpack](://webpack.github.io/) to work.*
+[browserify](http://browserify.org/) or [webpack](http://webpack.github.io/) to work.*
 
 ## JavaScript SDK documentation
 The following is an overview of the API methods present in the JavaScript SDK.

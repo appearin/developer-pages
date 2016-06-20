@@ -1,4 +1,4 @@
-var knex = require('../dbconfig');
+var knex = require('../knexstore');
 
 class UserRepo {
 

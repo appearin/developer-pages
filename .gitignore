@@ -6,3 +6,5 @@ node_modules/
 public/
 .deploy/
 server/dev.sqlite3
+server/npm-debug.log
+build/

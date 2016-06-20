@@ -4,7 +4,6 @@ class UserRepo {
 
   static saveUser(user){
     if(!this.isValid(user)){
-      console.log('rejecting because invalid user');
       return Promise.reject('Cannot save invalid user');
     }
 
@@ -24,7 +23,6 @@ class UserRepo {
     if(!user || !user.name || !user.email || !user.domain){
       return false;
     }
-    console.log("Saving user");
     return true;
   };
 

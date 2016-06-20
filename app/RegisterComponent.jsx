@@ -11,20 +11,18 @@ class RegisterComponent extends React.Component{
 
   onRegister(event){
     event.preventDefault();
-    let userData = this.getFormValues(event.target);
 
-    $.ajax({
-      type: 'POST',
-      url: '/register',
-      contentType: 'application/json; charset=utf-8',
-      data: JSON.stringify(userData),
-      success: (res, textStatus, xhr)=>{
-        console.log(res);
-        this.props.onSubmit(res);
+    let userData = JSON.stringify(this.getFormValues(event.target));
+
+    fetch('/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      error: (xhr, status, err)=>{
-        console.log(err);
-      }
+      body: userData
+    })
+    .then((res)=> {
+      return res.text();
     })
     .then((key)=>{
       this.props.onSubmit(key);

@@ -9,10 +9,12 @@ var app = express();
 var staticFolder = "./static/";
 
 var jsonParser = bodyParser.json();
+var urlParser = bodyParser.urlencoded({extended: true});
 
 app.use(express.static("public"));
 app.use(express.static("build"));
 app.use(bodyParser.json({ type: 'application/*+json' }));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -35,16 +37,27 @@ app.post('/register', jsonParser, (req, res)=>{
 })
 
 app.post('/isvalidkey', jsonParser, (req, res)=>{
-  let key = req.body.key;
-  let hmac = req.body.hmac;
-
-  let generatedHmac = KeyGenerator.generateHmac(key);
-
-  if(hmac == generatedHmac){
-      res.send('ok');
-      return;
+  let body = Buffer.from(req.body.key, 'base64').toString('ascii');
+  try{
+      let data = JSON.parse(body)
+      let generatedHmac = KeyGenerator.generateHmac(data.key);
+      if(data.hmac == generatedHmac){
+          res.send('ok');
+          return;
+      }
+      res.status(404).send('Invalid');
+      return
   }
-  res.status(404).send('Invalid');
+  catch(e){
+    if( typeof e == SyntaxError){
+        res.status(404).send('Invalid');
+    }
+    console.log(e)
+    res.status(500).send('Internal server error');
+  }
+
+
+
 
 })
 

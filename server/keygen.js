@@ -9,7 +9,10 @@ class KeyGenerator {
         key: key,
         hmac: this.generateHmac(key)
     }
-    return JSON.stringify(keyWithHmac).toString('base64');
+
+    let keyData = new Buffer(JSON.stringify(keyWithHmac)).toString('base64');
+
+    return keyData;
   }
 
   static guid() {

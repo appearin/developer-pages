@@ -10,11 +10,6 @@ class App extends React.Component {
   constructor(props){
     super(props);
     autoBind(this);
-    this.registerTabName = "Register";
-    this.getKeyTabName = "Get key";
-    this.registerTabText = "Register";
-    this.getKeyTabText = "Get key";
-
 
     this.state = {
       stepNames: ['Register', 'Get your key'],

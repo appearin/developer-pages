@@ -34,10 +34,6 @@ app.post('/register', jsonParser, (req, res)=>{
   });
 })
 
-app.post('/login', (req, res) => {
-  res.send("ok")
-})
-
 app.post('/isvalidkey', jsonParser, (req, res)=>{
   let key = req.body.key;
   let hmac = req.body.hmac;

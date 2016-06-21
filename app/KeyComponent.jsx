@@ -6,12 +6,11 @@ class KeyComponent extends React.Component {
   constructor(props){
     super(props);
     autoBind(this);
-    console.log(props);
   }
 
   render(){
     return(
-      <div className="key" >Your key :{this.props.apiKey}</div>
+      <div className="key" >Your key: {this.props.apiKey}</div>
     );
   }
 

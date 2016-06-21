@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+var uuid = require('node-uuid');
 
 class KeyGenerator {
 
@@ -15,15 +16,10 @@ class KeyGenerator {
     return keyData;
   }
 
-  static uuid() {
+  static guid() {
     return uuid.v4();
   }
 
-  static s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
 
   static generateHmac(key){
     let hmac = crypto.createHmac('sha256', 'secret');

@@ -1,0 +1,14 @@
+.process-step{
+  display: inline-block;
+  padding-right: 30px;
+}
+.unactive-step{
+  color: grey;
+}
+.active-step{
+  color: black;
+}
+
+.key{
+  word-wrap: break-word;
+}

@@ -13,11 +13,11 @@ class App extends React.Component {
 
     this.state = {
       stepNames: ['Register', 'Get your key'],
+      stepIndex: 0,
       selectedTab:
         <RegisterComponent
-        setKey={this.setKeyValue}
-        onSubmit={this.onSubmit}/>,
-      stepIndex: 0
+          setKey={this.setKeyValue}
+          onSubmit={this.onSubmit}/>
       }
   }
 
@@ -28,14 +28,12 @@ class App extends React.Component {
   setRegisterTab(){
     this.setState({selectedTab:
       <RegisterComponent
-      setKey={this.setKeyValue}
-      onSubmit={this.onSubmit}/>
+        setKey={this.setKeyValue}
+        onSubmit={this.onSubmit}/>
     });
   }
 
   setKeyTab(keyVal){
-    console.log("Setting key tab");
-    console.log(keyVal);
     this.setState({selectedTab:
       <KeyComponent apiKey={keyVal} />,
       stepIndex: 1
@@ -45,8 +43,10 @@ class App extends React.Component {
   render(){
     return(
         <div>
-          <ProcessViewComponent stepIndex={this.state.stepIndex} data={this.state.stepNames} />
-          { this.state.selectedTab }
+          <ProcessViewComponent
+            stepIndex={this.state.stepIndex}
+            data={this.state.stepNames} />
+              { this.state.selectedTab }
         </div>
     );
   }

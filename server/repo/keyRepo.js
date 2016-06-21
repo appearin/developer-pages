@@ -1,50 +1,55 @@
 var knex = require('../knexstore');
+var log = require('winston');
+
+const TABLE_NAME = 'keys';
 
 class KeyRepo {
 
   static saveKey(key, keyOwnerId){
-    if(!key){return null}
+    if(!key){
+      return null;
+    };
 
-    return knex('keys')
+    return knex(TABLE_NAME)
     .insert({
       key: key,
       ownerId: keyOwnerId
     })
-    .catch((error)=>{
-      console.log(error);
-    })
+    .catch((error)=> {
+      log.log('error', 'Failed to save user', error);
+    });
   }
 
-  static getKey(userId){
-    return knex
+  getKeys(userId){
+    return this.knex
     .select('key')
     .from('keys')
-    .where('ownerId','=',userId)
-    .catch( (error)=>{
-      console.log(error);
-    })
+    .where('ownerId', '=', userId)
+    .catch( (error)=> {
+      log.log('error', 'Failed get users keys', error);
+    });
   }
 
   static getOwner(key){
     return knex
     .select('ownerId')
     .from('keys')
-    .where('key','=',key)
-    .catch( (error)=>{
-      console.log(error);
-    })
+    .where('key', '=', key)
+
+    .catch( (error)=> {
+      log.log('error', 'Failed to get userId', error);
+    });
   }
 
 
   static isInDatabase(key, callback){
     this.getOwner(key).then((ownerId)=>{
-        console.log("owner: " + ownerId);
-        if(ownerId==""){
+        if(ownerId === ""){
           callback(false);
           return;
         }
         callback(true);
-    })
+    });
   }
 
 }

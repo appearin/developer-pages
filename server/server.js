@@ -33,7 +33,7 @@ app.post('/register', jsonParser, (req, res)=>{
 app.post('/key/validate', jsonParser, (req, res)=>{
   let decodedApiCredentials = Buffer.from(req.body.apiKey, 'base64').toString('ascii');
   try{
-      let credentials = decodedApiCredentials;
+      let credentials = JSON.parse(decodedApiCredentials);
       let generatedHmac = KeyGenerator.generateHmac(credentials.key);
       if(credentials.hmac === generatedHmac){
           res.send('key is valid');

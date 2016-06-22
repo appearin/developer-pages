@@ -43,11 +43,13 @@ app.post('/key/validate', jsonParser, (req, res)=>{
       return;
   }
   catch(error){
-    if( typeof e === SyntaxError){
+    if(error instanceof SyntaxError){
         res.status(404).send('Invalid');
     }
-    log.log('error', 'error during key validation', error);
-    res.status(500).send('Internal server error');
+    else{
+      log.log('error', 'error during key validation', error);
+      res.status(500).send('Internal server error');
+    }
   }
 });
 

@@ -14,9 +14,6 @@ var jsonParser = bodyParser.json();
 
 log.level = 'debug';
 
-app.use(express.static("public"));
-app.use(express.static("build"));
-
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -40,7 +37,7 @@ app.post('/register', jsonParser, (req, res)=>{
 app.post('/key/validate', jsonParser, (req, res)=>{
   let decodedApiCredentials = Buffer.from(req.body.apiKey, 'base64').toString('ascii');
   try{
-      let credentials = JSON.parse(decodedApiCredentials);
+      let credentials = decodedApiCredentials;
       let generatedHmac = KeyGenerator.generateHmac(credentials.key);
       if(credentials.hmac === generatedHmac){
           res.send('key is valid');
@@ -61,3 +58,19 @@ app.post('/key/validate', jsonParser, (req, res)=>{
 app.listen(8080, ()=>{
   log.log('info', 'Server started...');
 });
+
+/* Middleware */
+
+function syntaxErrorHandler(err, req, res, next){
+  if(err instanceof SyntaxError){
+    log.log('error', 'Error during ', err);
+    res.status(400).send('Malformed request');
+  }
+  else{
+      next(err);
+  }
+}
+
+app.use(express.static("public"));
+app.use(express.static("build"));
+app.use(syntaxErrorHandler);

@@ -16,11 +16,11 @@ class ProcessViewComponent extends React.Component{
     let stepNodes = this.props.data.map((step, index)=> {
       if(index === this.props.stepIndex){
         return(
-        <li className="process-step active-step" ><h3>{step}</h3></li>
+        <li className="register-process-step active-step" ><h3>{step}</h3></li>
       );
       }
       return(
-        <li className="process-step unactive-step" ><h3>{step}</h3></li>
+        <li className="register-process-step unactive-step" ><h3>{step}</h3></li>
       );
     });
 

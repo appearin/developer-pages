@@ -10,7 +10,7 @@ class KeyComponent extends React.Component {
 
   render(){
     return(
-      <div className="key" >Your key: {this.props.apiKey}</div>
+      <div className="key-container" >Your key: {this.props.apiKey}</div>
     );
   }
 

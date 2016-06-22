@@ -19,7 +19,7 @@ class KeyGenerator {
   static generateApiKey() {
     return uuid.v4();
   }
-  
+
   static generateHmac(key){
     let hmac = crypto.createHmac('sha256', 'secret');
     hmac.update(key);

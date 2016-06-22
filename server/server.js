@@ -14,10 +14,6 @@ var jsonParser = bodyParser.json();
 
 log.level = 'debug';
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
 app.post('/register', jsonParser, (req, res)=>{
   userRepo.saveUser(req.body)
   .then((userId)=> {
@@ -55,10 +51,6 @@ app.post('/key/validate', jsonParser, (req, res)=>{
   }
 });
 
-app.listen(8080, ()=>{
-  log.log('info', 'Server started...');
-});
-
 /* Middleware */
 
 function syntaxErrorHandler(err, req, res, next){
@@ -74,3 +66,8 @@ function syntaxErrorHandler(err, req, res, next){
 app.use(express.static("public"));
 app.use(express.static("build"));
 app.use(syntaxErrorHandler);
+
+
+app.listen(8080, ()=>{
+  log.log('info', 'Server started...');
+});

@@ -24,8 +24,8 @@ class RegisterComponent extends React.Component{
     .then((res)=> {
       return res.text();
     })
-    .then((key)=>{
-      this.props.onSubmit(key);
+    .then((key)=> {
+      this.props.onSuccess(key);
     });
 
   }

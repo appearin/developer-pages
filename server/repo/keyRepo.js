@@ -10,7 +10,7 @@ class KeyRepo {
 
   saveKey(key, keyOwnerId){
     if(!key){
-      return null;
+      throw new Error("Key must be supplied");
     };
 
     return this.knex(TABLE_NAME)
@@ -45,7 +45,7 @@ class KeyRepo {
 
 
   isInDatabase(key, callback){
-    this.getOwner(key).then((ownerId)=>{
+    this.getOwner(key).then((ownerId)=> {
         if(ownerId === ""){
           callback(false);
           return;

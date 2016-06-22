@@ -1,16 +1,19 @@
-var knex = require('../knexstore');
 var log = require('winston');
 
 const TABLE_NAME = 'users';
 
 class UserRepo {
 
-  static saveUser(user){
+  constructor(knex){
+    this.knex = knex;
+  }
+
+  saveUser(user){
     if(!this.isValid(user)){
       return Promise.reject('Cannot save invalid user');
     }
 
-    return knex(TABLE_NAME)
+    return this.knex(TABLE_NAME)
     .insert({
       user: user.name,
       email: user.email,
@@ -22,7 +25,7 @@ class UserRepo {
     });
   };
 
-  static isValid(user){
+  isValid(user){
     if(!user){
       log.log('debug', 'No user info found ');
       return false;

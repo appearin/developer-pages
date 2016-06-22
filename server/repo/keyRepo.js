@@ -1,16 +1,19 @@
-var knex = require('../knexstore');
 var log = require('winston');
 
 const TABLE_NAME = 'keys';
 
 class KeyRepo {
 
-  static saveKey(key, keyOwnerId){
+  constructor(knex){
+    this.knex = knex;
+  }
+
+  saveKey(key, keyOwnerId){
     if(!key){
       return null;
     };
 
-    return knex(TABLE_NAME)
+    return this.knex(TABLE_NAME)
     .insert({
       key: key,
       ownerId: keyOwnerId
@@ -30,19 +33,18 @@ class KeyRepo {
     });
   }
 
-  static getOwner(key){
-    return knex
+  getUserId(key){
+    return this.knex
     .select('ownerId')
     .from('keys')
     .where('key', '=', key)
-
     .catch( (error)=> {
       log.log('error', 'Failed to get userId', error);
     });
   }
 
 
-  static isInDatabase(key, callback){
+  isInDatabase(key, callback){
     this.getOwner(key).then((ownerId)=>{
         if(ownerId === ""){
           callback(false);

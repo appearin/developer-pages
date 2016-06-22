@@ -1,10 +1,22 @@
 {
+
     "env": {
         "builtin": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "browser": true
+     },
+
+    "plugins": ['react'],
+
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "modules": true
+      }
     },
-    "extends": "webrtc",
 
     "rules": {
         "block-scoped-var": 2,
@@ -85,6 +97,8 @@
         "wrap-iife": [
             2,"any"
         ],
+
+        "react/jsx-uses-vars": "error",
 
     }
 }

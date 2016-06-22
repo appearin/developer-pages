@@ -17,11 +17,12 @@ class App extends React.Component {
       selectedTab:
         <RegisterComponent
           setKey={this.setKeyValue}
-          onSubmit={this.onSubmit}/>
-      }
+          onSuccess={this.onRegister}/>
+      };
   }
 
-  onSubmit(keyVal){
+  /* When registering the request return a apiKey */
+  onRegister(keyVal){
     this.setKeyTab(keyVal);
   }
 
@@ -29,7 +30,7 @@ class App extends React.Component {
     this.setState({selectedTab:
       <RegisterComponent
         setKey={this.setKeyValue}
-        onSubmit={this.onSubmit}/>
+        onRegisterAndRetrieveKey={this.onRegisterAndRetrieveKey}/>
     });
   }
 

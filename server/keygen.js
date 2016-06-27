@@ -3,16 +3,13 @@ var uuid = require('node-uuid');
 
 class KeyGenerator {
 
-  static generate(){
-    let key = this.generateApiKey();
+  static createCredentialsFromKey(key){
     let keyWithHmac =
     {
         key: key,
         hmac: this.generateHmac(key)
     };
-
     let keyData = new Buffer(JSON.stringify(keyWithHmac)).toString('base64');
-
     return keyData;
   }
 

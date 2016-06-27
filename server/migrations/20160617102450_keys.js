@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('keys', function(table){
     table.string('key').primary();
-    table.integer('ownerId').references('id').inTable('users');
+    table.integer('userId').references('userId').inTable('users').notNullable();
   });
 };
 

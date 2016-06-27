@@ -1,8 +1,6 @@
 var knexConnection = require('./knexConnection');
-var UserRepo = require('./repo/userRepo.js');
-var userRepo = new UserRepo(knexConnection);
-var KeyRepo = require('./repo/keyRepo.js');
-var keyRepo = new KeyRepo(knexConnection);
+var userRepo = require('./repo/userRepo.js')(knexConnection);
+var keyRepo = require('./repo/keyRepo.js')(knexConnection);
 
 var KeyGenerator = require('./keygen.js');
 var express = require('express');
@@ -14,51 +12,83 @@ var jsonParser = bodyParser.json();
 
 log.level = 'debug';
 
-app.post('/register', jsonParser, (req, res)=>{
+/* Helper functions */
+
+function decodeCredentials(encodedCredentials){
+  let decodedCredentials = Buffer.from(encodedCredentials, 'base64').toString('ascii');
+  log.log('debug', 'decoded credentials: ', decodedCredentials);
+
+  try{
+    return JSON.parse(decodedCredentials);
+  } catch(error) {
+    log.log('error', error);
+    throw new SyntaxError();
+  }
+}
+
+/* Endpoints */
+
+app.post('/register', jsonParser, (req, res)=> {
+  let key;
+  let credentials;
   userRepo.saveUser(req.body)
   .then((userId)=> {
-
-    let key = KeyGenerator.generate();
-    keyRepo.saveKey(key, userId)
-    .then(()=> {
-        return res.send(key);
-    })
-    .catch((error)=>{
-      log.log('error', error);
-    });
-
+    log.log('debug', 'New user got id :%s', userId);
+    key = KeyGenerator.generateApiKey();
+    credentials = KeyGenerator.createCredentialsFromKey(key);
+    return keyRepo.saveKey(key, userId);
+  })
+  .then(()=> {
+    return res.send(credentials);
+  })
+  .catch((error)=>{
+    log.log('error', error);
   });
+
 });
 
-app.post('/key/validate', jsonParser, (req, res)=>{
-  let decodedApiCredentials = Buffer.from(req.body.apiKey, 'base64').toString('ascii');
-  try{
-      let credentials = JSON.parse(decodedApiCredentials);
-      let generatedHmac = KeyGenerator.generateHmac(credentials.key);
-      if(credentials.hmac === generatedHmac){
-          res.send('key is valid');
-          return;
-      }
+app.post('/key/validate', jsonParser, (req, res)=> {
+    let credentials = decodeCredentials(req.body.key);
+
+    let generatedHmac = KeyGenerator.generateHmac(credentials.key);
+    if(credentials.hmac !== generatedHmac){
       res.status(404).send('Invalid');
       return;
-  }
-  catch(error){
-    if(error instanceof SyntaxError){
-        res.status(404).send('Invalid');
     }
-    else{
-      log.log('error', 'error during key validation', error);
-      res.status(500).send('Internal server error');
-    }
-  }
+
+    res.send('key is valid');
+    return;
+});
+
+app.post('/user', jsonParser, (req, res)=> {
+  let credentials = decodeCredentials(req.body.key);
+
+  userRepo.getUser(credentials.key)
+  .then((user)=> {
+    res.send(user);
+  })
+  .catch((error)=> {
+    log.log('error', 'error when getting key owner', error);
+    res.status(500).send('Internal server error');
+  });
 });
 
 /* Middleware */
 
 function syntaxErrorHandler(err, req, res, next){
   if(err instanceof SyntaxError){
-    log.log('error', 'Error during ', err);
+    log.log('error', err);
     res.status(400).send('Malformed request');
+  }
+  else{
+      next(err);
+  }
+}
+
+function typeErrorHandler(err, req, res, next){
+  if(err instanceof TypeError){
+    log.log('error', err);
+    res.status(400).send('Invalid contents');
   }
   else{
       next(err);
@@ -68,8 +98,9 @@ function syntaxErrorHandler(err, req, res, next){
 app.use(express.static("public"));
 app.use(express.static("build"));
 app.use(syntaxErrorHandler);
+app.use(typeErrorHandler);
 
 
-app.listen(8080, ()=>{
+app.listen(9090, ()=>{
   log.log('info', 'Server started...');
 });

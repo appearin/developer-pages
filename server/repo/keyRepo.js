@@ -1,6 +1,6 @@
 var log = require('winston');
 
-const TABLE_NAME = 'keys';
+const TABLE_KEYS = 'keys';
 
 class KeyRepo {
 
@@ -10,16 +10,22 @@ class KeyRepo {
 
   saveKey(key, keyOwnerId){
     if(!key){
-      throw new Error("Key must be supplied");
+      throw new Error('Key must be supplied');
     };
+    if(!keyOwnerId){
+      throw new Error('Key owner must be supplied');
+    }
 
-    return this.knex(TABLE_NAME)
+    log.log('debug', 'Saving changekey on userId: %j as owner', keyOwnerId);
+
+    return this.knex(TABLE_KEYS)
     .insert({
       key: key,
-      ownerId: keyOwnerId
+      userId: keyOwnerId
     })
     .catch((error)=> {
       log.log('error', 'Failed to save user', error);
+      return Promise.reject('Could not save user');
     });
   }
 
@@ -56,4 +62,6 @@ class KeyRepo {
 
 }
 
-module.exports = KeyRepo;
+module.exports = (function(connection) {
+  return new KeyRepo(connection);
+});

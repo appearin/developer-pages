@@ -1,6 +1,7 @@
 var log = require('winston');
 
-const TABLE_NAME = 'users';
+const TABLE_USERS = 'users';
+const TABLE_KEYS = 'keys';
 
 class UserRepo {
 
@@ -13,16 +14,33 @@ class UserRepo {
       return Promise.reject('Cannot save invalid user');
     }
 
-    return this.knex(TABLE_NAME)
+    return this.knex(TABLE_USERS)
     .insert({
-      user: user.name,
+      name: user.name,
       email: user.email,
       domain: user.domain
     })
-    .returning('id')
+    .returning('userId')
+    .then(([id]) => {
+      return id;
+    })
     .catch(function(error){
-      log.log('error', "Could not save user", error);
+      return Promise.reject(new Error("Could not save user"));
+      //log.log('error', "Could not save user", error);
     });
+  };
+
+  getUser(apiKey){
+    if(!apiKey){
+      Promise.reject('No key provided');
+    }
+
+    return this.knex
+    .select('*')
+    .from(TABLE_USERS)
+    .join(TABLE_KEYS, 'users.userId', 'keys.userId')
+    .where('key', apiKey);
+
   };
 
   isValid(user){
@@ -47,4 +65,6 @@ class UserRepo {
 
 }
 
-module.exports = UserRepo;
+module.exports = (function(connection) {
+  return new UserRepo(connection);
+});

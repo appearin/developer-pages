@@ -1,4 +1,5 @@
-var log = require('winston');
+const log = require('winston');
+const assert = require('assert');
 
 const TABLE_KEYS = 'keys';
 
@@ -9,54 +10,62 @@ class KeyRepo {
   }
 
   saveKey(key, keyOwnerId){
-    if(!key){
-      throw new Error('Key must be supplied');
-    };
-    if(!keyOwnerId){
-      throw new Error('Key owner must be supplied');
-    }
+    assert.ok(key, 'key is not provided');
+    assert.ok(keyOwnerId, 'owner of key is not provided');
 
     log.log('debug', 'Saving changekey on userId: %j as owner', keyOwnerId);
 
     return this.knex(TABLE_KEYS)
     .insert({
       key: key,
-      userId: keyOwnerId
+      userId: keyOwnerId,
+      blocked: false
     })
     .catch((error)=> {
-      log.log('error', 'Failed to save user', error);
-      return Promise.reject('Could not save user');
+      return Promise.reject(error);
     });
   }
 
-  getKeys(userId){
+  getKey(key){
+    assert.ok(key, 'key is not provided');
+
     return this.knex
-    .select('key')
-    .from('keys')
-    .where('ownerId', '=', userId)
-    .catch( (error)=> {
-      log.log('error', 'Failed get users keys', error);
-    });
+    .select('*')
+    .from(TABLE_KEYS)
+    .where('key', '=', key);
   }
 
-  getUserId(key){
-    return this.knex
-    .select('ownerId')
-    .from('keys')
+  updateKeyBlock(key, blockValue){
+    assert.ok(key, 'key is not provided');
+
+    return this.knex(TABLE_KEYS)
     .where('key', '=', key)
-    .catch( (error)=> {
-      log.log('error', 'Failed to get userId', error);
+    .update({blocked: blockValue})
+    .catch((error)=> {
+      return Promise.reject(error);
     });
   }
 
+  blockKey(key){
+    return this.updateKeyBlock(key, true);
+  }
 
-  isInDatabase(key, callback){
-    this.getOwner(key).then((ownerId)=> {
-        if(ownerId === ""){
-          callback(false);
-          return;
-        }
-        callback(true);
+  unblockKey(key){
+    return this.updateKeyBlock(key, false);
+  }
+
+  isBlocked(key){
+    return this.getKey(key)
+    .then((result) => {
+      if(!result){
+        return Promise.resolve(true);
+      }
+
+      let isBlocked = result[0].blocked;
+      return Promise.resolve(isBlocked);
+    })
+    .catch((error)=> {
+      return Promise.reject(error);
     });
   }
 

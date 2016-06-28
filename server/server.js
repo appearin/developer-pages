@@ -56,8 +56,36 @@ app.post('/key/validate', jsonParser, (req, res)=> {
       return;
     }
 
-    res.send('key is valid');
-    return;
+    keyRepo.isBlocked(credentials.key)
+    .then(isBlocked => {
+      if(isBlocked){
+        res.status(404).send('Blocked');
+        return;
+      }
+      res.send('key is valid');
+      });
+});
+
+app.post('/key/block', jsonParser, (req, res)=> {
+  let credentials = decodeCredentials(req.body.key);
+  keyRepo.blockKey(credentials.key)
+  .then(()=> {
+    res.send('Ok');
+  })
+  .catch(()=> {
+    res.send('Failed');
+  });
+});
+
+app.post('/key/unblock', jsonParser, (req, res)=> {
+  let credentials = decodeCredentials(req.body.key);
+  keyRepo.unblockKey(credentials.key)
+  .then(()=> {
+    res.send('Ok');
+  })
+  .catch(()=> {
+    res.send('Failed');
+  });
 });
 
 app.post('/user', jsonParser, (req, res)=> {
@@ -72,6 +100,7 @@ app.post('/user', jsonParser, (req, res)=> {
     res.status(500).send('Internal server error');
   });
 });
+;
 
 /* Middleware */
 

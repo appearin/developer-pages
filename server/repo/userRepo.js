@@ -25,7 +25,7 @@ class UserRepo {
       return id;
     })
     .catch(function(error){
-      return Promise.reject(new Error("Could not save user"));
+      return Promise.reject(new Error("Could not save user", error));
       //log.log('error', "Could not save user", error);
     });
   };

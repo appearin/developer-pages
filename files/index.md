@@ -4,6 +4,8 @@ description: Ever wanted to have video communication on your web page, but could
 template: index.html
 ---
 
+<p class="alert alert-danger">The embedded version and the Developer SDK has been deprecated, and will cease to function on June 30th, 2017.</p>
+
 <p class="ingress">Ever wanted to have video communication on your web page,
 but couldn't figure out how to set it up easily?</p>
 

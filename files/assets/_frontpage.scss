@@ -7,6 +7,19 @@
   }
 }
 
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+}
+
+.alert {
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
 .reverse-colors {
   background: #f4f4f4;
   color: #323338;

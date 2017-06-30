@@ -27,8 +27,8 @@ your website:
 ## SDK Changelog
 The following is a changelog for the JavaScript SDK.
 
-### 0.0.5
-- Add deprecation warning prompting users to migrate away from the API
+### DEPRECATED
+All versions of the appearin-sdk is now deprecated.
 
 ### 0.0.4
 - Correctly support room names without prepending slash
